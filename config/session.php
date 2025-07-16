@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 use Illuminate\Support\Str;
 
 return [
@@ -131,7 +129,7 @@ return [
 
     'cookie' => env(
         'SESSION_COOKIE',
-        Str::snake((string) env('APP_NAME', 'laravel')) . '_session'
+        Str::snake((string) env('APP_NAME', 'laravel')).'_session'
     ),
 
     /*
