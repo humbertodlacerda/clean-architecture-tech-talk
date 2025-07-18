@@ -11,11 +11,15 @@ class ZipCode
         $this->validate($zipCode);
     }
 
-    private function validate(string $zipCode): void
+    private function validate(string $zipCode): string
     {
+        $zipCode = preg_replace('/\D/', '', $zipCode);
+
         if (! preg_match('/^\d{8}$/', $zipCode)) {
             throw new InvalidArgumentException('Invalid zip code, must be 8 digits.');
         }
+
+        return $zipCode;
     }
 
     public function value(): string

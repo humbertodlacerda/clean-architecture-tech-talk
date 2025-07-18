@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Dto\User;
+namespace App\Domain\User\Dto;
 
 use App\Domain\Address\ValueObjects\ZipCode;
 use App\Domain\User\ValueObjects\Email;

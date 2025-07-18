@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\ViaCep;
+namespace App\Infrastructure\BrazilApi;
 
 use App\Domain\Address\Dto\AddressDto;
 use App\Domain\Address\Repositories\AddressProviderInterface;
@@ -9,7 +9,7 @@ use App\Domain\Address\ValueObjects\ZipCode;
 use Exception;
 use Illuminate\Support\Facades\Http;
 
-class ViaCepService implements AddressProviderInterface
+class BrazilApiService implements AddressProviderInterface
 {
     public function getAddressByZipCode(ZipCode $zipCode): AddressDto
     {
@@ -18,11 +18,11 @@ class ViaCepService implements AddressProviderInterface
             $addressData = $address->json();
 
             return new AddressDto(
-                data_get($addressData, 'logradouro'),
-                data_get($addressData, 'bairro'),
-                data_get($addressData, 'localidade'),
-                data_get($addressData, 'uf'),
-                data_get($addressData, 'complemento'),
+                data_get($addressData, 'street'),
+                data_get($addressData, 'neighborhood'),
+                data_get($addressData, 'city'),
+                data_get($addressData, 'state'),
+                data_get($addressData, 'complement'),
                 new ZipCode(str_replace('-', '', data_get($addressData, 'cep')))
             );
 
@@ -33,6 +33,6 @@ class ViaCepService implements AddressProviderInterface
 
     public function setUrl(ZipCode $zipCode): Url
     {
-        return new Url(config('services.via_cep.base_url').'/'.$zipCode->value().'/json/');
+        return new Url(config('services.brazil_api.base_url').'/'.$zipCode->value());
     }
 }

@@ -2,11 +2,14 @@
 
 namespace App\Domain\User\Entities;
 
-class UserEntity
+use App\Domain\Address\Entities\AddressEntity;
+
+readonly class UserEntity
 {
     public function __construct(
         public string $name,
         public string $email,
-        public string $password // já deve estar criptografada
+        public string $password,
+        public AddressEntity $address
     ) {}
 }

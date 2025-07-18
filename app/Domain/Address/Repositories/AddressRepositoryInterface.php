@@ -2,4 +2,10 @@
 
 namespace App\Domain\Address\Repositories;
 
-interface AddressRepositoryInterface {}
+use App\Domain\Address\Dto\CreateAddressDto;
+use App\Domain\Address\Entities\AddressEntity;
+
+interface AddressRepositoryInterface
+{
+    public function create(CreateAddressDto $data): AddressEntity;
+}

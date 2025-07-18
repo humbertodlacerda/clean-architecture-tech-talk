@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Domain\Address\Entities;
+namespace App\Domain\Address\Dto;
 
 use App\Domain\Address\ValueObjects\ZipCode;
 
-readonly class AddressEntity
+class AddressDto
 {
     public function __construct(
         public string $street,
