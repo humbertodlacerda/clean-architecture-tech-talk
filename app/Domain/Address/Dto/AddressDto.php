@@ -13,5 +13,6 @@ class AddressDto
         public string $state,
         public ?string $complement,
         public ZipCode $zipCode,
+        public ?int $userId = null,
     ) {}
 }

@@ -2,7 +2,7 @@
 
 namespace App\Domain\User\ValueObjects;
 
-use http\Exception\InvalidArgumentException;
+use InvalidArgumentException;
 
 class Email
 {

@@ -2,7 +2,6 @@
 
 namespace App\Infrastructure\Orm\Eloquent\User;
 
-use App\Domain\Address\Dto\CreateAddressDto;
 use App\Domain\User\Entities\UserEntity;
 use App\Domain\User\Repositories\UserRepositoryInterface;
 use App\Domain\User\ValueObjects\Email;
@@ -22,22 +21,11 @@ class UserRepository implements UserRepositoryInterface
             'password' => Hash::make($data->password),
         ]);
 
-        $addressData = new CreateAddressDto(
-            $user->id,
-            $data->address->street,
-            $data->address->neighborhood,
-            $data->address->city,
-            $data->address->state,
-            $data->address->complement,
-            $data->address->zipCode,
-        );
-        $address = $this->addressRepository->create($addressData);
-
         return new UserEntity(
-            $user->name,
-            $user->email,
-            $user->password,
-            $address
+            name: $user->name,
+            email: $user->email,
+            password: $user->password,
+            userId: $user->id,
         );
     }
 

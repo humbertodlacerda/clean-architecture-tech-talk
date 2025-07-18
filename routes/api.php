@@ -7,6 +7,5 @@ Route::controller(UserController::class)
     ->prefix('users')
     ->name('users.')
     ->group(function (): void {
-        Route::get('/', 'index')->name('index');
         Route::post('/', 'store')->name('store');
     });

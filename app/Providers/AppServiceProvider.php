@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(AddressRepositoryInterface::class, AddressRepository::class);
-        $this->app->bind(AddressProviderInterface::class, ViaCepService::class);
-        //        $this->app->bind(AddressProviderInterface::class, BrazilApiService::class);
+        //        $this->app->bind(AddressProviderInterface::class, ViaCepService::class);
+        $this->app->bind(AddressProviderInterface::class, BrazilApiService::class);
     }
 }

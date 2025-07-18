@@ -15,11 +15,6 @@ class UserController extends Controller
 {
     public function __construct(protected UserService $createUserService) {}
 
-    public function index(): JsonResponse
-    {
-        return new JsonResponse(['message' => 'Users retrieved successfully.']);
-    }
-
     public function store(CreateUserRequest $request): JsonResponse
     {
         $requestValidated = $request->validated();

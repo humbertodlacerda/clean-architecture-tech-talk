@@ -18,12 +18,12 @@ class BrazilApiService implements AddressProviderInterface
             $addressData = $address->json();
 
             return new AddressDto(
-                data_get($addressData, 'street'),
-                data_get($addressData, 'neighborhood'),
-                data_get($addressData, 'city'),
-                data_get($addressData, 'state'),
-                data_get($addressData, 'complement'),
-                new ZipCode(str_replace('-', '', data_get($addressData, 'cep')))
+                street: data_get($addressData, 'street'),
+                neighborhood: data_get($addressData, 'neighborhood'),
+                city: data_get($addressData, 'city'),
+                state: data_get($addressData, 'state'),
+                complement: data_get($addressData, 'complement'),
+                zipCode: new ZipCode(str_replace('-', '', data_get($addressData, 'cep')))
             );
 
         } catch (Exception $e) {

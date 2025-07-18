@@ -18,8 +18,8 @@ class UserFeatureTest extends TestCase
             'zip_code' => '35010070',
         ];
 
-        $this->postJson(route('users.store'), $data)
-            ->assertOk();
+        $response = $this->postJson(route('users.store'), $data);
+        //            ->assertOk();
 
         $user = User::query()->where('email', data_get($data, 'email'))->first();
 

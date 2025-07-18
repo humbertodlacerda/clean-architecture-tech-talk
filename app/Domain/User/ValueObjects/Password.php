@@ -2,7 +2,7 @@
 
 namespace App\Domain\User\ValueObjects;
 
-use http\Exception\InvalidArgumentException;
+use InvalidArgumentException;
 
 class Password
 {
@@ -26,7 +26,7 @@ class Password
         $regex = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{5,}$/';
 
         if (! preg_match($regex, $password)) {
-            throw new \Exception('The password is invalid.');
+            throw new InvalidArgumentException('The password is invalid.');
         }
     }
 }

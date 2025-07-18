@@ -4,7 +4,7 @@ namespace App\Domain\Address\Entities;
 
 use App\Domain\Address\ValueObjects\ZipCode;
 
-readonly class AddressEntity
+class AddressEntity
 {
     public function __construct(
         public string $street,
@@ -13,5 +13,6 @@ readonly class AddressEntity
         public string $state,
         public ?string $complement,
         public ZipCode $zipCode,
+        public ?int $userId,
     ) {}
 }

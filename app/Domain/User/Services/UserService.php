@@ -2,8 +2,9 @@
 
 namespace App\Domain\User\Services;
 
-use App\Domain\Address\Entities\AddressEntity;
+use App\Domain\Address\Dto\CreateAddressDto;
 use App\Domain\Address\Repositories\AddressProviderInterface;
+use App\Domain\Address\Services\AddressService;
 use App\Domain\User\Dto\CreateUserDto;
 use App\Domain\User\Entities\UserEntity;
 use App\Domain\User\Repositories\UserRepositoryInterface;
@@ -13,7 +14,8 @@ class UserService
 {
     public function __construct(
         protected UserRepositoryInterface $repository,
-        protected AddressProviderInterface $addressProvider
+        protected AddressProviderInterface $addressProvider,
+        protected AddressService $addressService,
     ) {}
 
     public function create(CreateUserDto $data): UserEntity
@@ -22,23 +24,21 @@ class UserService
             throw new Exception('There is already a user with the email sent.');
         }
 
-        $addressData = $this->addressProvider->getAddressByZipCode($data->zipCode);
-        $address = new AddressEntity(
-            $addressData->street,
-            $addressData->neighborhood,
-            $addressData->city,
-            $addressData->state,
-            $addressData->complement,
-            $addressData->zipCode,
-        );
-
         $user = new UserEntity(
-            $data->name,
-            $data->email,
-            $data->password,
-            $address
+            name: $data->name,
+            email: $data->email,
+            password: $data->password,
         );
 
-        return $this->repository->create($user);
+        $userCreated = $this->repository->create($user);
+        $addressData = new CreateAddressDto(
+            userId: $userCreated->userId,
+            zipCode: $data->zipCode,
+        );
+
+        $addressCreated = $this->addressService->create($addressData);
+        $userCreated->address = $addressCreated;
+
+        return $userCreated;
     }
 }

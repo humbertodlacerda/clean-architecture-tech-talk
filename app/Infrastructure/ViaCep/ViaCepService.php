@@ -18,12 +18,12 @@ class ViaCepService implements AddressProviderInterface
             $addressData = $address->json();
 
             return new AddressDto(
-                data_get($addressData, 'logradouro'),
-                data_get($addressData, 'bairro'),
-                data_get($addressData, 'localidade'),
-                data_get($addressData, 'uf'),
-                data_get($addressData, 'complemento'),
-                new ZipCode(str_replace('-', '', data_get($addressData, 'cep')))
+                street: data_get($addressData, 'logradouro'),
+                neighborhood: data_get($addressData, 'bairro'),
+                city: data_get($addressData, 'localidade'),
+                state: data_get($addressData, 'uf'),
+                complement: data_get($addressData, 'complemento'),
+                zipCode: new ZipCode(str_replace('-', '', data_get($addressData, 'cep')))
             );
 
         } catch (Exception $e) {

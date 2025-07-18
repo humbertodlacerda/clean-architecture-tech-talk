@@ -4,12 +4,13 @@ namespace App\Domain\User\Entities;
 
 use App\Domain\Address\Entities\AddressEntity;
 
-readonly class UserEntity
+class UserEntity
 {
     public function __construct(
         public string $name,
         public string $email,
         public string $password,
-        public AddressEntity $address
+        public ?int $userId = null,
+        public ?AddressEntity $address = null,
     ) {}
 }
