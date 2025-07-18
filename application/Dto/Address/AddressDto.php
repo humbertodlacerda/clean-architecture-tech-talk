@@ -2,7 +2,7 @@
 
 namespace Application\Dto\Address;
 
-use Application\ObjectsValue\Address\ZipCode;
+use App\Domain\Address\ValueObjects\ZipCode;
 
 class AddressDto
 {

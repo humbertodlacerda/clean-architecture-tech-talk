@@ -2,48 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use Illuminate\Http\Request;
+use App\Domain\User\Services\CreateUserService;
+use App\Http\Requests\CreateUserRequest;
+use Application\Dto\User\CreateUserDto;
+use Illuminate\Http\JsonResponse;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct(protected CreateUserService $createUserService) {}
+
     public function index()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(CreateUserRequest $request): JsonResponse
     {
-        //
-    }
+        $requestValidated = $request->validated();
+        $data = new CreateUserDto(
+            $requestValidated['name'],
+            $requestValidated['email'],
+            $requestValidated['password'],
+            $requestValidated['zip_code']
+        );
+        $user = $this->createUserService->create($data);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(User $user)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, User $user)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(User $user)
-    {
-        //
+        return new JsonResponse($user);
     }
 }

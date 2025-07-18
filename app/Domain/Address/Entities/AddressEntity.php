@@ -1,5 +1,5 @@
 <?php
 
-namespace Domain\Address;
+namespace App\Domain\Address\Entities;
 
 class AddressEntity {}

@@ -1,5 +1,5 @@
 <?php
 
-namespace App\UseCases\User;
+namespace Application\UseCases\User;
 
 class UserDto {}

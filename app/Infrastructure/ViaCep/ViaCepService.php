@@ -1,11 +1,12 @@
 <?php
 
-namespace Infra\ViaCep;
+namespace App\Infrastructure\ViaCep;
 
+use App\Domain\Address\ValueObjects\ZipCode;
 use Application\Dto\Address\AddressDto;
 use Application\Interfaces\Address\AddressInterface;
-use Application\ObjectsValue\Address\ZipCode;
 use Illuminate\Support\Facades\Http;
+use Infra\ViaCep\Exception;
 
 class ViaCepService implements AddressInterface
 {

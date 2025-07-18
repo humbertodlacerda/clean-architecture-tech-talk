@@ -1,5 +1,5 @@
 <?php
 
-namespace App\Domain\Address\Interfaces;
+namespace App\Domain\Address\Repositories;
 
 interface AddressRepositoryInterface {}

@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\ObjectsValue\Address;
+namespace App\Domain\Address\ValueObjects;
 
 use http\Exception\InvalidArgumentException;
 

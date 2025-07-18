@@ -12,24 +12,24 @@ class CreateUserRequest extends FormRequest
         return [
             'name' => [
                 'required',
-                'string'
+                'string',
             ],
             'email' => [
                 'required',
                 'email',
-                'unique:users'
+                'unique:users',
             ],
             'password' => [
                 'required',
                 'string',
                 'min:8',
-                'confirmed'
+                'confirmed',
             ],
             'zip_code' => [
                 'required',
                 'string',
                 Rule::numeric(),
-            ]
+            ],
         ];
     }
 }

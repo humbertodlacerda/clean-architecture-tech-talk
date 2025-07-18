@@ -1,9 +1,10 @@
 <?php
 
-namespace App\UseCases\User;
+namespace Application\UseCases\User;
 
-use App\Interfaces\Address\AddressInterface;
+use App\Domain\Address\ValueObjects\ZipCode;
 use Application\Dto\User\CreateUserDto;
+use Application\Interfaces\Address\AddressInterface;
 
 class CreateUserUseCase
 {
@@ -11,8 +12,9 @@ class CreateUserUseCase
         protected AddressInterface $addressService
     ) {}
 
-    public static function execute(CreateUserDto $createUserDto)
+    public function execute(CreateUserDto $createUserDto): void
     {
-        $address = $this->addressService->getAddressByZipCode();
+        $zipCode = new ZipCode($createUserDto->zipCode());
+        $address = $this->addressService->getAddressByZipCode($zipCode);
     }
 }

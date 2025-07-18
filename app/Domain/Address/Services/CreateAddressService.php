@@ -2,7 +2,4 @@
 
 namespace App\Domain\Address\Services;
 
-class CreateAddressService
-{
-
-}
+class CreateAddressService {}
