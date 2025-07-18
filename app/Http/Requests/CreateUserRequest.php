@@ -23,7 +23,6 @@ class CreateUserRequest extends FormRequest
                 'required',
                 'string',
                 'min:8',
-                'confirmed',
             ],
             'zip_code' => [
                 'required',
