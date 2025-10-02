@@ -5,15 +5,14 @@ namespace App\Domain\Address\Services;
 use App\Domain\Address\Dto\AddressDto;
 use App\Domain\Address\Dto\CreateAddressDto;
 use App\Domain\Address\Entities\AddressEntity;
-use App\Domain\Address\Repositories\AddressProviderInterface;
 use App\Domain\Address\Repositories\AddressRepositoryInterface;
 use App\Domain\Address\ValueObjects\ZipCode;
+use App\Infrastructure\AddressValidation\AddressManager;
 
 class AddressService
 {
     public function __construct(
-        protected AddressRepositoryInterface $addressRepository,
-        protected AddressProviderInterface $addressProvider,
+        protected AddressRepositoryInterface $addressRepository
     ) {}
 
     public function create(CreateAddressDto $data): AddressEntity
@@ -26,7 +25,9 @@ class AddressService
 
     public function getByZipCode(ZipCode $zipCode): AddressDto
     {
-        $address = $this->addressProvider->getAddressByZipCode($zipCode);
+        //        $address = $this->addressProvider->getAddressByZipCode($zipCode);
+        $addressProvider = app(AddressManager::class);
+        $address = $addressProvider->getAddressByZipCode($zipCode);
 
         return new AddressDto(
             $address->street,

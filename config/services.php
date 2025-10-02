@@ -18,10 +18,13 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
-    'via_cep' => [
-        'base_url' => rtrim(env('VIA_CEP_BASE_URL', ''), '/'),
-    ],
-    'brazil_api' => [
-        'base_url' => rtrim(env('BRAZIL_API_BASE_URL', ''), '/'),
+    'address_validation' => [
+        'default_driver' => env('ADDRESS_VALIDATION_DRIVER'),
+        'via_cep' => [
+            'base_url' => rtrim(env('VIA_CEP_BASE_URL', ''), '/'),
+        ],
+        'brazil_api' => [
+            'base_url' => rtrim(env('BRAZIL_API_BASE_URL', ''), '/'),
+        ],
     ],
 ];

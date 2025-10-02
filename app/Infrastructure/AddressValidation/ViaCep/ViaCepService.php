@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\ViaCep;
+namespace App\Infrastructure\AddressValidation\ViaCep;
 
 use App\Domain\Address\Dto\AddressDto;
 use App\Domain\Address\Repositories\AddressProviderInterface;
@@ -33,6 +33,6 @@ class ViaCepService implements AddressProviderInterface
 
     public function setUrl(ZipCode $zipCode): Url
     {
-        return new Url(config('services.via_cep.base_url').'/'.$zipCode->value().'/json/');
+        return new Url(config('services.address_validation.via_cep.base_url').'/'.$zipCode->value().'/json/');
     }
 }

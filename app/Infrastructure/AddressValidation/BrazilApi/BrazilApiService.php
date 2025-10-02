@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\BrazilApi;
+namespace App\Infrastructure\AddressValidation\BrazilApi;
 
 use App\Domain\Address\Dto\AddressDto;
 use App\Domain\Address\Repositories\AddressProviderInterface;
@@ -33,6 +33,6 @@ class BrazilApiService implements AddressProviderInterface
 
     public function setUrl(ZipCode $zipCode): Url
     {
-        return new Url(config('services.brazil_api.base_url').'/'.$zipCode->value());
+        return new Url(config('services.address_validation.brazil_api.base_url').'/'.$zipCode->value());
     }
 }
